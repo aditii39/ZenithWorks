@@ -1,0 +1,4 @@
+customer_name,issue,product,priority
+Alice Johnson,Cannot log into account,ZenithCloud Dashboard,High
+Bob Kumar,Billing discrepancy on invoice,ZenithPay,Medium
+Carol White,Feature request for bulk export,ZenithAnalytics,Low

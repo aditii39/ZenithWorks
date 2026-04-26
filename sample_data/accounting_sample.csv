@@ -1,0 +1,4 @@
+client_name,invoice_number,amount,due_date
+Acme Corp,INV-2025-001,5000 USD,2025-09-15
+TechStart Ltd,INV-2025-002,12500 USD,2025-09-30
+Global Ventures,INV-2025-003,3200 USD,2025-10-05
