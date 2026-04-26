@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +8,8 @@
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    :root {
+    /* ── DARK THEME (default) ── */
+    :root, [data-theme="dark"] {
       --bg:        #080c14;
       --surface:   #0f1623;
       --surface2:  #161e2e;
@@ -23,6 +24,36 @@
       --cs-color:      #10b981;
       --mkt-color:     #f59e0b;
       --acc-color:     #a855f7;
+
+      --toggle-bg:     #1e2d45;
+      --toggle-border: #2d3f5a;
+      --toggle-icon:   #7c9cbf;
+      --toggle-knob:   #4f8ef7;
+      --shadow:        rgba(0,0,0,0.4);
+    }
+
+    /* ── LIGHT THEME ── */
+    [data-theme="light"] {
+      --bg:        #f0f4fa;
+      --surface:   #ffffff;
+      --surface2:  #e8eef8;
+      --border:    #d0d9ea;
+      --accent:    #2563eb;
+      --accent2:   #7c3aed;
+      --text:      #0f172a;
+      --muted:     #64748b;
+      --success:   #059669;
+      --warning:   #d97706;
+      --hr-color:      #2563eb;
+      --cs-color:      #059669;
+      --mkt-color:     #d97706;
+      --acc-color:     #7c3aed;
+
+      --toggle-bg:     #e2e8f0;
+      --toggle-border: #cbd5e1;
+      --toggle-icon:   #64748b;
+      --toggle-knob:   #2563eb;
+      --shadow:        rgba(0,0,0,0.08);
     }
 
     html, body { height: 100%; overflow: hidden; }
@@ -34,9 +65,10 @@
       display: flex;
       height: 100vh;
       width: 100vw;
+      transition: background 0.25s ease, color 0.25s ease;
     }
 
-    /* ── SIDEBAR ─────────────────────────────── */
+    /* ── SIDEBAR ── */
     .sidebar {
       width: 260px;
       min-width: 260px;
@@ -46,6 +78,7 @@
       flex-direction: column;
       padding: 0;
       overflow: hidden;
+      transition: background 0.25s ease, border-color 0.25s ease;
     }
 
     .sidebar-logo {
@@ -91,10 +124,10 @@
     .nav-item:hover { background: var(--surface2); }
     .nav-item.active { background: var(--surface2); }
 
-    .nav-item.active[data-dept="hr"]              { border-left-color: var(--hr-color); }
-    .nav-item.active[data-dept="customer-service"] { border-left-color: var(--cs-color); }
-    .nav-item.active[data-dept="marketing"]        { border-left-color: var(--mkt-color); }
-    .nav-item.active[data-dept="accounting"]       { border-left-color: var(--acc-color); }
+    .nav-item.active[data-dept="hr"]               { border-left-color: var(--hr-color); }
+    .nav-item.active[data-dept="customer-service"]  { border-left-color: var(--cs-color); }
+    .nav-item.active[data-dept="marketing"]         { border-left-color: var(--mkt-color); }
+    .nav-item.active[data-dept="accounting"]        { border-left-color: var(--acc-color); }
 
     .nav-icon {
       width: 34px; height: 34px;
@@ -108,6 +141,11 @@
     .nav-icon.mkt { background: rgba(245,158,11,0.12); }
     .nav-icon.acc { background: rgba(168,85,247,0.12); }
 
+    [data-theme="light"] .nav-icon.hr  { background: rgba(37,99,235,0.10); }
+    [data-theme="light"] .nav-icon.cs  { background: rgba(5,150,105,0.10); }
+    [data-theme="light"] .nav-icon.mkt { background: rgba(217,119,6,0.10); }
+    [data-theme="light"] .nav-icon.acc { background: rgba(124,58,237,0.10); }
+
     .nav-text h3 { font-size: 0.85rem; font-weight: 500; color: var(--text); }
     .nav-text p  { font-size: 0.72rem; color: var(--muted); margin-top: 1px; }
 
@@ -115,6 +153,9 @@
       margin-top: auto;
       padding: 16px 24px;
       border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     .badge {
       display: inline-flex; align-items: center; gap: 6px;
@@ -125,8 +166,55 @@
       font-size: 0.72rem;
       color: var(--accent);
     }
+    [data-theme="light"] .badge {
+      background: rgba(37,99,235,0.08);
+      border-color: rgba(37,99,235,0.18);
+    }
 
-    /* ── MAIN CONTENT ────────────────────────── */
+    /* ── THEME TOGGLE ── */
+    .theme-toggle {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .theme-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .toggle-track {
+      position: absolute;
+      inset: 0;
+      background: var(--toggle-bg);
+      border: 1px solid var(--toggle-border);
+      border-radius: 12px;
+      transition: background 0.25s ease, border-color 0.25s ease;
+      display: flex;
+      align-items: center;
+      padding: 0 3px;
+    }
+    .toggle-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--toggle-knob);
+      transition: transform 0.25s ease, background 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      transform: translateX(0);
+    }
+    [data-theme="light"] .toggle-thumb {
+      transform: translateX(20px);
+    }
+    .toggle-thumb::before {
+      content: '🌙';
+      font-size: 9px;
+    }
+    [data-theme="light"] .toggle-thumb::before {
+      content: '☀️';
+    }
+
+    /* ── MAIN CONTENT ── */
     .main {
       flex: 1;
       display: flex;
@@ -142,6 +230,8 @@
       align-items: center;
       padding: 0 32px;
       gap: 12px;
+      background: var(--surface);
+      transition: background 0.25s ease, border-color 0.25s ease;
     }
     .topbar-dept {
       font-family: 'Syne', sans-serif;
@@ -151,7 +241,6 @@
     }
     .topbar-sub { font-size: 0.8rem; color: var(--muted); margin-left: auto; }
 
-    /* content area scrolls */
     .content {
       flex: 1;
       overflow-y: auto;
@@ -162,7 +251,7 @@
     .content::-webkit-scrollbar-track { background: transparent; }
     .content::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
-    /* ── LANDING VIEW ────────────────────────── */
+    /* ── LANDING VIEW ── */
     #landing {
       width: 100%;
       display: flex;
@@ -200,13 +289,19 @@
       cursor: pointer;
       text-align: left;
       transition: all 0.2s ease;
+      box-shadow: 0 2px 8px var(--shadow);
     }
-    .dept-card:hover { border-color: var(--accent); transform: translateY(-2px); background: var(--surface2); }
+    .dept-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      background: var(--surface2);
+      box-shadow: 0 6px 20px var(--shadow);
+    }
     .dept-card .icon { font-size: 1.6rem; margin-bottom: 10px; }
-    .dept-card h3 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+    .dept-card h3 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; color: var(--text); }
     .dept-card p  { font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
 
-    /* ── FORM VIEW ───────────────────────────── */
+    /* ── FORM VIEW ── */
     #form-view {
       display: none;
       width: 100%;
@@ -249,12 +344,20 @@
       font-family: 'DM Sans', sans-serif;
       font-size: 0.88rem;
       outline: none;
-      transition: border-color 0.15s;
+      transition: border-color 0.15s, background 0.25s, color 0.25s;
     }
     .field input:focus, .field select:focus, .field textarea:focus {
       border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(79,142,247,0.1);
     }
-    .field select option { background: var(--surface2); }
+    [data-theme="light"] .field input:focus,
+    [data-theme="light"] .field select:focus,
+    [data-theme="light"] .field textarea:focus {
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    }
+    .field input::placeholder,
+    .field textarea::placeholder { color: var(--muted); opacity: 0.6; }
+    .field select option { background: var(--surface); color: var(--text); }
     .field textarea { resize: vertical; min-height: 80px; }
 
     .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -265,6 +368,7 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 10px 14px;
+      transition: background 0.25s, border-color 0.25s;
     }
     .toggle-row label { font-size: 0.85rem; color: var(--text); margin: 0; text-transform: none; letter-spacing: 0; }
     .toggle-row input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
@@ -287,7 +391,7 @@
     .btn-generate:hover { opacity: 0.9; transform: translateY(-1px); }
     .btn-generate:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-    /* ── OUTPUT PANEL ────────────────────────── */
+    /* ── OUTPUT PANEL ── */
     .output-panel {
       flex: 1;
       min-width: 0;
@@ -303,15 +407,19 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      transition: background 0.25s, border-color 0.25s;
+      box-shadow: 0 2px 12px var(--shadow);
     }
     .output-header {
       display: flex; align-items: center; justify-content: space-between;
       padding: 14px 18px;
       border-bottom: 1px solid var(--border);
+      background: var(--surface2);
+      transition: background 0.25s, border-color 0.25s;
     }
     .output-header span { font-size: 0.78rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.6px; }
     .copy-btn {
-      background: var(--surface2);
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 6px;
       color: var(--muted);
@@ -375,6 +483,7 @@
     }
     .status-pill.success { background: rgba(16,185,129,0.12); color: var(--success); border: 1px solid rgba(16,185,129,0.2); }
     .status-pill.error   { background: rgba(239,68,68,0.12);  color: #ef4444;        border: 1px solid rgba(239,68,68,0.2); }
+    [data-theme="light"] .status-pill.success { background: rgba(5,150,105,0.08); }
 
     /* dept accent colors on form title */
     .dept-accent-hr  { color: var(--hr-color)  !important; }
@@ -385,7 +494,7 @@
 </head>
 <body>
 
-<!-- ═══════════════════════════ SIDEBAR ═══════════════════════════ -->
+<!-- ═══════ SIDEBAR ═══════ -->
 <aside class="sidebar">
   <div class="sidebar-logo">
     <h1>ZenithWorks</h1>
@@ -428,13 +537,18 @@
 
   <div class="sidebar-footer">
     <div class="badge">⚡ Gemini 1.5 Flash</div>
+    <label class="theme-toggle" title="Toggle light/dark mode">
+      <input type="checkbox" id="theme-checkbox" onchange="toggleTheme(this)" />
+      <div class="toggle-track">
+        <div class="toggle-thumb"></div>
+      </div>
+    </label>
   </div>
 </aside>
 
-<!-- ═══════════════════════════ MAIN ══════════════════════════════ -->
+<!-- ═══════ MAIN ═══════ -->
 <main class="main">
 
-  <!-- topbar -->
   <div class="topbar">
     <span class="topbar-dept" id="topbar-title">Dashboard</span>
     <span class="topbar-sub" id="topbar-sub">Select a department to get started</span>
@@ -473,7 +587,6 @@
     <!-- FORM VIEW -->
     <div id="form-view">
 
-      <!-- Left: form -->
       <div class="form-panel">
         <h2 id="form-title"></h2>
         <p class="subtitle" id="form-subtitle"></p>
@@ -544,7 +657,7 @@
         </button>
       </div>
 
-      <!-- Right: output -->
+      <!-- Output panel -->
       <div class="output-panel">
         <div class="output-box">
           <div class="output-header">
@@ -571,6 +684,18 @@
 </main>
 
 <script>
+  /* ── Theme ── */
+  const savedTheme = localStorage.getItem('zw-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  document.getElementById('theme-checkbox').checked = savedTheme === 'light';
+
+  function toggleTheme(cb) {
+    const theme = cb.checked ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('zw-theme', theme);
+  }
+
+  /* ── Dept meta ── */
   const DEPT_META = {
     'hr': {
       title: 'HR Department',
@@ -618,29 +743,23 @@
     currentDept = dept;
     const meta = DEPT_META[dept];
 
-    // nav highlight
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     document.querySelector(`.nav-item[data-dept="${dept}"]`).classList.add('active');
 
-    // topbar
     document.getElementById('topbar-title').textContent = meta.title;
     document.getElementById('topbar-sub').textContent   = meta.topbarSub;
 
-    // form title
     const titleEl = document.getElementById('form-title');
     titleEl.textContent = meta.title;
     titleEl.className = meta.accent;
     document.getElementById('form-subtitle').textContent = meta.subtitle;
 
-    // show correct fields
     document.querySelectorAll('.dept-fields').forEach(el => el.style.display = 'none');
     document.getElementById(`fields-${dept}`).style.display = 'block';
 
-    // reset output
     resetOutput();
 
-    // switch views
-    document.getElementById('landing').style.display   = 'none';
+    document.getElementById('landing').style.display = 'none';
     const fv = document.getElementById('form-view');
     fv.style.display = 'flex';
     fv.classList.add('visible');
@@ -679,7 +798,6 @@
       payload.email = document.getElementById('recipient-email').value.trim();
     }
 
-    // UI: loading state
     const btn = document.getElementById('generate-btn');
     btn.disabled = true;
     btn.textContent = 'Generating…';
