@@ -1,6 +1,11 @@
 """
 ZenithWorks AI Employees — Multi-Agent Workflow Automation
-Flask app using CrewAI + Google Gemini 1.5 Flash
+Flask app using CrewAI + Groq (llama-3.1-8b-instant)
+
+Groq is used instead of Gemini because:
+  - Completely free with no daily quota limits
+  - Much faster inference (tokens/sec)
+  - 14,400 requests/day on free tier
 """
 
 # ─────────────────────────────────────────────
@@ -29,8 +34,6 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
-# ✅ FIX: Use CrewAI's own LLM class — NOT langchain_google_genai
-# CrewAI uses LiteLLM internally which requires the "gemini/" prefix
 from crewai import Agent, Task, Crew, Process, LLM
 
 # ── Logging ──────────────────────────────────
@@ -46,14 +49,13 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "zenithworks-secret")
 CORS(app)
 
-# ── Gemini LLM via CrewAI LLM class ──────────
-# ✅ FIX: model must be prefixed with "gemini/" for LiteLLM to route correctly
-if not os.getenv("GOOGLE_API_KEY"):
-    logger.warning("GOOGLE_API_KEY not set in .env — agent calls will fail.")
+# ── Groq LLM ─────────────────────────────────
+if not os.getenv("GROQ_API_KEY"):
+    logger.warning("GROQ_API_KEY not set in .env — agent calls will fail.")
 
 llm = LLM(
-    model="gemini/gemini-1.5-flash",
-    api_key=os.getenv("GOOGLE_API_KEY"),
+    model="groq/llama-3.1-8b-instant",
+    api_key=os.getenv("GROQ_API_KEY"),
     temperature=0.3,
 )
 
@@ -161,7 +163,7 @@ def run_crewai(role: str, goal: str, backstory: str, prompt: str) -> str:
         llm=llm,
         verbose=False,
         allow_delegation=False,
-        max_iter=3,
+        max_iter=1,
     )
     task = Task(
         description=prompt,
@@ -180,7 +182,7 @@ def run_crewai(role: str, goal: str, backstory: str, prompt: str) -> str:
 def process_hr_task(data: dict) -> str:
     return run_crewai(
         role="Senior HR Business Partner",
-        goal="Write warm, professional onboarding emails that make new employees feel welcomed",
+        goal="Write warm professional onboarding emails that make new employees feel welcomed",
         backstory="You are an experienced HR professional at ZenithWorks Tech with 10+ years of talent management.",
         prompt=f"""
 Write a professional and warm onboarding welcome email for a new employee:
@@ -252,7 +254,7 @@ Sign off as: Marketing Team, ZenithWorks Tech
 def process_accounting_task(data: dict) -> str:
     return run_crewai(
         role="Accounts Receivable Specialist",
-        goal="Send accurate, professional payment emails that maintain good client relationships",
+        goal="Send accurate professional payment emails that maintain good client relationships",
         backstory="You are a detail-oriented accounts receivable specialist at ZenithWorks Tech.",
         prompt=f"""
 Write a professional invoice/payment email:
@@ -325,13 +327,14 @@ def process_csv_tasks(csv_content: str, department: str) -> list:
 
     return results
 
+
 # ── Routes ────────────────────────────────────
 @app.route("/health")
 def health():
     snap = _get_monitor_snapshot()
     return jsonify({
         "status":     "healthy",
-        "model":      "gemini/gemini-1.5-flash",
+        "model":      "groq/llama-3.1-8b-instant",
         "framework":  "CrewAI",
         "timestamp":  datetime.now().isoformat(),
         "monitoring": snap,
@@ -342,7 +345,7 @@ def health():
 def list_departments():
     return jsonify({
         "departments": list(HANDLERS.keys()),
-        "model":       "gemini/gemini-1.5-flash",
+        "model":       "groq/llama-3.1-8b-instant",
     })
 
 
@@ -392,7 +395,7 @@ def process_department(department: str):
         "result":     result,
         "email_sent": email_sent,
         "latency_ms": latency_ms,
-        "model":      "gemini/gemini-1.5-flash",
+        "model":      "groq/llama-3.1-8b-instant",
         "timestamp":  datetime.now().isoformat(),
     })
 
@@ -431,7 +434,7 @@ def process_csv():
         "total":         len(results),
         "success_count": success_count,
         "error_count":   len(results) - success_count,
-        "model":         "gemini/gemini-1.5-flash",
+        "model":         "groq/llama-3.1-8b-instant",
         "results":       results,
     })
 
@@ -452,5 +455,5 @@ def internal_error(e):     return jsonify({"error": "Internal server error"}), 5
 if __name__ == "__main__":
     port  = int(os.getenv("PORT", 5000))
     debug = os.getenv("FLASK_DEBUG", "false").lower() == "true"
-    logger.info(f"ZenithWorks starting on port {port} | model=gemini/gemini-1.5-flash")
+    logger.info(f"ZenithWorks starting on port {port} | model=groq/llama-3.1-8b-instant")
     app.run(host="0.0.0.0", port=port, debug=debug)
