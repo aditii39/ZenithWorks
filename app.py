@@ -8,9 +8,6 @@ Groq is used instead of Gemini because:
   - 14,400 requests/day on free tier
 """
 
-# ─────────────────────────────────────────────
-# load_dotenv() MUST be first — before anything reads env vars
-# ─────────────────────────────────────────────
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -44,12 +41,12 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ── Flask ─────────────────────────────────────
+# Flask 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "zenithworks-secret")
 CORS(app)
 
-# ── Groq LLM ─────────────────────────────────
+# Groq LLM
 if not os.getenv("GROQ_API_KEY"):
     logger.warning("GROQ_API_KEY not set in .env — agent calls will fail.")
 
@@ -59,7 +56,7 @@ llm = LLM(
     temperature=0.3,
 )
 
-# ── Monitoring (thread-safe) ──────────────────
+# Monitoring (thread-safe)
 _stats_lock = threading.Lock()
 _monitor = {
     "total_requests":       0,
@@ -154,7 +151,7 @@ class GoogleServices:
 
 google_services = GoogleServices()
 
-# ── CrewAI runner ─────────────────────────────
+# CrewAI runner
 def run_crewai(role: str, goal: str, backstory: str, prompt: str) -> str:
     agent = Agent(
         role=role,
@@ -178,7 +175,7 @@ def run_crewai(role: str, goal: str, backstory: str, prompt: str) -> str:
     )
     return str(crew.kickoff())
 
-# ── Department handlers ───────────────────────
+# Department handlers
 def process_hr_task(data: dict) -> str:
     return run_crewai(
         role="Senior HR Business Partner",
@@ -297,7 +294,7 @@ BATCH_SHEET_MAP = {
     "accounting":       "Accounting_Batch!A:E",
 }
 
-# ── CSV batch processor ───────────────────────
+# CSV batch processor
 def process_csv_tasks(csv_content: str, department: str) -> list:
     handler = HANDLERS.get(department)
     if not handler:
@@ -328,7 +325,7 @@ def process_csv_tasks(csv_content: str, department: str) -> list:
     return results
 
 
-# ── Routes ────────────────────────────────────
+# Routes
 @app.route("/health")
 def health():
     snap = _get_monitor_snapshot()
