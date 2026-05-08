@@ -4,66 +4,68 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ZenithWorks AI Employees</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Nunito:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     /* ── DARK THEME ── */
     :root, [data-theme="dark"] {
-      --bg:        #171e2e;
-      --surface:   #1f2840;
-      --surface2:  #273353;
-      --surface3:  #2f3d60;
-      --border:    #344870;
-      --border2:   #405888;
+      --bg:        #0f1623;
+      --surface:   #161e30;
+      --surface2:  #1e2840;
+      --surface3:  #263050;
+      --border:    #2a3a5c;
+      --border2:   #364d78;
       --text:      #dce8fc;
-      --text2:     #a8bedf;
-      --muted:     #647ca8;
+      --text2:     #a0b8d8;
+      --muted:     #5a7098;
       --accent:    #e8924b;
-      --accent2:   #6882f0;
-      --success:   #4ecb94;
+      --accent2:   #5c7ef0;
+      --success:   #3ec98a;
       --error:     #f06a6a;
-      --shadow:    rgba(0,0,0,0.35);
-      --shadow2:   rgba(0,0,0,0.55);
+      --shadow:    rgba(0,0,0,0.4);
+      --shadow2:   rgba(0,0,0,0.65);
+      --glow:      rgba(232,146,75,0.15);
 
       --hr-c:  #5b99f7;
-      --cs-c:  #4ecb94;
+      --cs-c:  #3ec98a;
       --mkt-c: #e8924b;
-      --acc-c: #c07df0;
+      --acc-c: #b87df0;
 
       --hr-bg:  rgba(91,153,247,0.10);
-      --cs-bg:  rgba(78,203,148,0.10);
+      --cs-bg:  rgba(62,201,138,0.10);
       --mkt-bg: rgba(232,146,75,0.10);
-      --acc-bg: rgba(192,125,240,0.10);
+      --acc-bg: rgba(184,125,240,0.10);
     }
 
     /* ── LIGHT THEME ── */
     [data-theme="light"] {
-      --bg:        #f3f5fb;
+      --bg:        #f0f4fc;
       --surface:   #ffffff;
-      --surface2:  #eaeffa;
-      --surface3:  #dce5f7;
-      --border:    #c8d5ef;
-      --border2:   #adc0e8;
-      --text:      #111827;
-      --text2:     #374151;
-      --muted:     #6b7da0;
-      --accent:    #d97b35;
-      --accent2:   #4a64e0;
+      --surface2:  #e8eef8;
+      --surface3:  #d8e3f4;
+      --border:    #c5d3ec;
+      --border2:   #a8bcdf;
+      --text:      #0d1626;
+      --text2:     #2c3e60;
+      --muted:     #637ba0;
+      --accent:    #d97635;
+      --accent2:   #3f5fd4;
       --success:   #1a9e67;
       --error:     #d94f4f;
-      --shadow:    rgba(0,0,0,0.07);
-      --shadow2:   rgba(0,0,0,0.14);
+      --shadow:    rgba(0,0,0,0.06);
+      --shadow2:   rgba(0,0,0,0.13);
+      --glow:      rgba(217,118,53,0.10);
 
       --hr-c:  #2563eb;
       --cs-c:  #1a9e67;
-      --mkt-c: #d97b35;
-      --acc-c: #9333ea;
+      --mkt-c: #d97635;
+      --acc-c: #7c3aed;
 
       --hr-bg:  rgba(37,99,235,0.08);
       --cs-bg:  rgba(26,158,103,0.08);
-      --mkt-bg: rgba(217,123,53,0.08);
-      --acc-bg: rgba(147,51,234,0.08);
+      --mkt-bg: rgba(217,118,53,0.08);
+      --acc-bg: rgba(124,58,237,0.08);
     }
 
     html, body { height: 100%; overflow: hidden; }
@@ -80,95 +82,90 @@
 
     /* ── SIDEBAR ── */
     .sidebar {
-      width: 258px;
-      min-width: 258px;
+      width: 262px;
+      min-width: 262px;
       background: var(--surface);
       border-right: 1px solid var(--border);
       display: flex;
       flex-direction: column;
       overflow: hidden;
       transition: background 0.3s, border-color 0.3s;
+      position: relative;
+    }
+    .sidebar::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 1px; height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--accent2), transparent);
+      opacity: 0.2;
     }
 
     .sidebar-logo {
-      padding: 26px 22px 18px;
+      padding: 24px 20px 16px;
       border-bottom: 1px solid var(--border);
     }
-    .logo-lockup { display: flex; align-items: center; gap: 10px; }
+    .logo-lockup { display: flex; align-items: center; gap: 11px; }
     .logo-mark {
-      width: 32px; height: 32px;
+      width: 34px; height: 34px;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
-      border-radius: 9px;
+      border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
       font-family: 'Bricolage Grotesque', sans-serif;
-      font-weight: 800; font-size: 14px; color: #fff;
+      font-weight: 800; font-size: 15px; color: #fff;
       flex-shrink: 0;
+      box-shadow: 0 4px 14px var(--glow);
     }
     .logo-text h1 {
       font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.3px;
+      font-size: 1.05rem; font-weight: 800;
+      color: var(--text); letter-spacing: -0.4px;
     }
     .logo-text p {
-      font-size: 0.68rem;
-      color: var(--muted);
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      margin-top: 1px;
+      font-size: 0.65rem; color: var(--muted);
+      font-weight: 600; letter-spacing: 0.7px;
+      text-transform: uppercase; margin-top: 1px;
     }
 
     .sidebar-section-label {
-      font-size: 0.62rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.4px;
-      color: var(--muted);
-      padding: 18px 22px 6px;
+      font-size: 0.6rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1.6px;
+      color: var(--muted); padding: 18px 20px 6px;
     }
 
     .nav-item {
       position: relative;
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      padding: 10px 22px;
+      display: flex; align-items: center; gap: 11px;
+      padding: 9px 20px;
       cursor: pointer;
       transition: background 0.2s;
       margin: 2px 8px;
-      border-radius: 10px;
+      border-radius: 11px;
       overflow: hidden;
     }
     .nav-item::before {
       content: '';
-      position: absolute;
-      left: 0; top: 50%;
+      position: absolute; left: 0; top: 50%;
       transform: translateY(-50%) scaleY(0);
       width: 3px; height: 60%;
       border-radius: 0 3px 3px 0;
-      transition: transform 0.2s, opacity 0.2s;
-      opacity: 0;
+      transition: transform 0.2s;
     }
     .nav-item[data-dept="hr"]::before              { background: var(--hr-c); }
     .nav-item[data-dept="customer-service"]::before { background: var(--cs-c); }
     .nav-item[data-dept="marketing"]::before        { background: var(--mkt-c); }
     .nav-item[data-dept="accounting"]::before       { background: var(--acc-c); }
-
     .nav-item:hover { background: var(--surface2); }
     .nav-item.active { background: var(--surface2); }
-    .nav-item.active::before { transform: translateY(-50%) scaleY(1); opacity: 1; }
+    .nav-item.active::before { transform: translateY(-50%) scaleY(1); }
 
     .nav-icon {
-      width: 36px; height: 36px;
-      border-radius: 9px;
+      width: 36px; height: 36px; border-radius: 9px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
+      font-size: 1rem; flex-shrink: 0;
       transition: transform 0.2s;
     }
-    .nav-item:hover .nav-icon { transform: scale(1.08); }
+    .nav-item:hover .nav-icon { transform: scale(1.1); }
     .nav-icon.hr  { background: var(--hr-bg); }
     .nav-icon.cs  { background: var(--cs-bg); }
     .nav-icon.mkt { background: var(--mkt-bg); }
@@ -176,58 +173,58 @@
 
     .nav-text h3 {
       font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 0.84rem; font-weight: 600;
-      color: var(--text);
+      font-size: 0.84rem; font-weight: 700; color: var(--text);
     }
-    .nav-text p { font-size: 0.71rem; color: var(--muted); margin-top: 1px; font-weight: 400; }
+    .nav-text p { font-size: 0.7rem; color: var(--muted); margin-top: 1px; }
+
+    /* Live model indicator */
+    .model-live-row {
+      margin: 10px 8px 4px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 9px 12px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 7px var(--success);
+      animation: pulse-dot 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse-dot {
+      0%,100% { opacity: 1; }
+      50%      { opacity: 0.4; }
+    }
+    .model-info { flex: 1; min-width: 0; }
+    .model-info strong {
+      display: block; font-size: 0.72rem; font-weight: 700;
+      color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .model-info span { font-size: 0.63rem; color: var(--muted); }
 
     .sidebar-footer {
       margin-top: auto;
-      padding: 14px 20px;
+      padding: 12px 16px;
       border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
     }
-    .model-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      padding: 5px 11px;
-      font-size: 0.68rem;
-      font-weight: 600;
-      color: var(--text2);
-      letter-spacing: 0.2px;
-    }
-    .badge-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--success);
-      box-shadow: 0 0 6px var(--success);
-    }
+    .footer-label { font-size: 0.65rem; color: var(--muted); font-weight: 600; letter-spacing: 0.3px; }
 
     /* ── THEME TOGGLE ── */
-    .theme-toggle { display: flex; align-items: center; gap: 7px; cursor: pointer; }
-    .theme-toggle span { font-size: 0.7rem; color: var(--muted); font-weight: 500; }
     .toggle-track {
-      position: relative;
-      width: 42px; height: 22px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 11px;
-      cursor: pointer;
-      transition: background 0.25s, border-color 0.25s;
+      position: relative; width: 42px; height: 22px;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 11px; cursor: pointer; transition: background 0.25s;
     }
-    .toggle-track input { display: none; }
     .toggle-knob {
-      position: absolute;
-      top: 2px; left: 2px;
-      width: 16px; height: 16px;
-      border-radius: 50%;
+      position: absolute; top: 2px; left: 2px;
+      width: 16px; height: 16px; border-radius: 50%;
       background: var(--accent);
       transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
-      font-size: 8px;
       display: flex; align-items: center; justify-content: center;
+      font-size: 8px;
     }
     [data-theme="light"] .toggle-knob { transform: translateX(20px); }
 
@@ -235,31 +232,65 @@
     .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 
     .topbar {
-      height: 58px; min-height: 58px;
+      height: 56px; min-height: 56px;
       border-bottom: 1px solid var(--border);
       display: flex; align-items: center;
-      padding: 0 30px; gap: 10px;
+      padding: 0 28px; gap: 10px;
       background: var(--surface);
       transition: background 0.3s, border-color 0.3s;
     }
-    .topbar-icon { font-size: 1.15rem; }
+    .hamburger {
+      display: none; background: none; border: none;
+      cursor: pointer; padding: 6px; border-radius: 8px;
+      color: var(--text); flex-direction: column; gap: 5px;
+      align-items: center; justify-content: center;
+      transition: background 0.2s; flex-shrink: 0;
+    }
+    .hamburger:hover { background: var(--surface2); }
+    .hamburger span {
+      display: block; width: 20px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .topbar-icon { font-size: 1.1rem; }
     .topbar-title {
       font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 1rem; font-weight: 700;
-      color: var(--text);
+      font-size: 0.98rem; font-weight: 800; color: var(--text);
     }
-    .topbar-divider { width: 1px; height: 16px; background: var(--border); margin: 0 4px; }
-    .topbar-sub { font-size: 0.78rem; color: var(--muted); font-weight: 400; }
+    .topbar-divider { width: 1px; height: 16px; background: var(--border); margin: 0 2px; }
+    .topbar-sub { font-size: 0.76rem; color: var(--muted); }
     .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
-    .topbar-tag {
-      font-size: 0.68rem;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 3px 9px;
-      color: var(--text2);
-      font-weight: 500;
+
+    /* health badge — real status */
+    .health-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.67rem; font-weight: 700;
+      padding: 4px 10px; border-radius: 20px;
+      border: 1px solid transparent;
+      transition: all 0.3s;
+      cursor: default;
     }
+    .health-badge.checking {
+      background: var(--surface2); color: var(--muted);
+      border-color: var(--border);
+    }
+    .health-badge.online {
+      background: rgba(62,201,138,0.12); color: var(--success);
+      border-color: rgba(62,201,138,0.25);
+    }
+    .health-badge.offline {
+      background: rgba(240,106,106,0.12); color: var(--error);
+      border-color: rgba(240,106,106,0.25);
+    }
+    .health-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: currentColor;
+    }
+    .health-badge.online .health-dot { animation: pulse-dot 2s infinite; }
 
     .content {
       flex: 1; overflow-y: auto;
@@ -268,236 +299,296 @@
     .content::-webkit-scrollbar { width: 4px; }
     .content::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
-    /* ── LANDING ── */
+    /* ── DASHBOARD ── */
     #landing {
       width: 100%;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 40px 32px;
-      text-align: center; gap: 12px;
+      padding: 26px 28px 36px;
+      display: flex; flex-direction: column; gap: 22px;
     }
-    .landing-eyebrow {
-      display: inline-flex; align-items: center; gap: 7px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      padding: 5px 14px;
-      font-size: 0.72rem;
-      color: var(--accent);
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      margin-bottom: 4px;
+
+    .dash-greeting {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
     }
-    .landing-eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
-    #landing h2 {
+    .dash-greeting-text h2 {
       font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 2.6rem; font-weight: 800;
-      line-height: 1.12;
-      color: var(--text);
-      letter-spacing: -1px;
+      font-size: 1.6rem; font-weight: 800; color: var(--text);
+      letter-spacing: -0.5px; line-height: 1.2;
     }
-    #landing h2 em {
+    .dash-greeting-text h2 em {
       font-style: normal;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    #landing > p {
-      color: var(--text2); font-size: 0.95rem;
-      max-width: 400px; line-height: 1.65; margin-top: 4px;
+    .dash-greeting-text p { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+    .dash-date {
+      font-size: 0.7rem; color: var(--muted);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 6px 12px; font-weight: 600;
+      white-space: nowrap; align-self: center;
     }
 
-    .dept-cards {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 12px; margin-top: 22px; max-width: 520px; width: 100%;
+    /* Stat Cards */
+    .stat-row {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 12px;
     }
-    .dept-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px;
-      cursor: pointer;
-      text-align: left;
-      transition: border-color 0.22s, transform 0.22s, box-shadow 0.22s, background 0.22s;
-      position: relative;
-      overflow: hidden;
+    .stat-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 16px 16px 13px;
+      display: flex; flex-direction: column; gap: 8px;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      position: relative; overflow: hidden; cursor: pointer;
     }
-    .dept-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 0.22s;
-      pointer-events: none;
+    .stat-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px; border-radius: 14px 14px 0 0;
     }
-    .dept-card[data-d="hr"]::after               { background: radial-gradient(circle at 80% 20%, rgba(91,153,247,0.07), transparent 60%); }
-    .dept-card[data-d="customer-service"]::after   { background: radial-gradient(circle at 80% 20%, rgba(78,203,148,0.07), transparent 60%); }
-    .dept-card[data-d="marketing"]::after          { background: radial-gradient(circle at 80% 20%, rgba(232,146,75,0.07), transparent 60%); }
-    .dept-card[data-d="accounting"]::after         { background: radial-gradient(circle at 80% 20%, rgba(192,125,240,0.07), transparent 60%); }
-
-    .dept-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 28px var(--shadow2);
+    .stat-card.sc-hr::before   { background: var(--hr-c); }
+    .stat-card.sc-cs::before   { background: var(--cs-c); }
+    .stat-card.sc-mkt::before  { background: var(--mkt-c); }
+    .stat-card.sc-acc::before  { background: var(--acc-c); }
+    .stat-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border2);
+      box-shadow: 0 6px 20px var(--shadow);
     }
-    .dept-card:hover::after { opacity: 1; }
-    .dept-card[data-d="hr"]:hover              { border-color: var(--hr-c); }
-    .dept-card[data-d="customer-service"]:hover { border-color: var(--cs-c); }
-    .dept-card[data-d="marketing"]:hover        { border-color: var(--mkt-c); }
-    .dept-card[data-d="accounting"]:hover       { border-color: var(--acc-c); }
-
-    .card-icon-wrap {
-      width: 40px; height: 40px; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; margin-bottom: 12px;
+    .stat-top { display: flex; align-items: center; justify-content: space-between; }
+    .stat-icon {
+      width: 33px; height: 33px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center; font-size: 0.95rem;
     }
-    .dept-card h3 {
+    .stat-icon.hr  { background: var(--hr-bg); }
+    .stat-icon.cs  { background: var(--cs-bg); }
+    .stat-icon.mkt { background: var(--mkt-bg); }
+    .stat-icon.acc { background: var(--acc-bg); }
+    .stat-trend {
+      font-size: 0.63rem; font-weight: 800; padding: 2px 7px; border-radius: 20px;
+    }
+    .stat-trend.up   { background: rgba(62,201,138,0.12); color: var(--success); }
+    .stat-trend.down { background: rgba(240,106,106,0.12); color: var(--error); }
+    .stat-trend.flat { background: var(--surface2); color: var(--muted); }
+    .stat-value {
       font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 0.92rem; font-weight: 700;
-      margin-bottom: 4px; color: var(--text);
+      font-size: 1.8rem; font-weight: 800;
+      color: var(--text); line-height: 1; letter-spacing: -1px;
     }
-    .dept-card p { font-size: 0.77rem; color: var(--muted); line-height: 1.45; font-weight: 400; }
+    .stat-label { font-size: 0.7rem; color: var(--muted); font-weight: 500; }
+
+    /* Bottom grid */
+    .dash-bottom { display: grid; grid-template-columns: 1fr 330px; gap: 16px; align-items: start; }
+
+    .dash-section-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.86rem; font-weight: 800; color: var(--text);
+      margin-bottom: 10px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .dash-section-title span { font-size: 0.68rem; color: var(--muted); font-weight: 500; }
+
+    /* Activity Feed */
+    .activity-feed {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+    }
+    .activity-item {
+      display: flex; align-items: center; gap: 11px;
+      padding: 12px 15px; border-bottom: 1px solid var(--border);
+      transition: background 0.18s; cursor: pointer;
+    }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-item:hover { background: var(--surface2); }
+    .activity-dot {
+      width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+    }
+    .activity-dot.hr  { background: var(--hr-c);  box-shadow: 0 0 5px var(--hr-c); }
+    .activity-dot.cs  { background: var(--cs-c);  box-shadow: 0 0 5px var(--cs-c); }
+    .activity-dot.mkt { background: var(--mkt-c); box-shadow: 0 0 5px var(--mkt-c); }
+    .activity-dot.acc { background: var(--acc-c); box-shadow: 0 0 5px var(--acc-c); }
+    .activity-info { flex: 1; min-width: 0; }
+    .activity-info strong {
+      display: block; font-size: 0.8rem; font-weight: 700; color: var(--text);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .activity-info p {
+      font-size: 0.69rem; color: var(--muted); margin-top: 1px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .activity-time { font-size: 0.66rem; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+    .activity-badge {
+      font-size: 0.6rem; font-weight: 800; padding: 2px 7px;
+      border-radius: 6px; flex-shrink: 0; text-transform: uppercase; letter-spacing: 0.4px;
+    }
+    .activity-badge.hr  { background: var(--hr-bg);  color: var(--hr-c); }
+    .activity-badge.cs  { background: var(--cs-bg);  color: var(--cs-c); }
+    .activity-badge.mkt { background: var(--mkt-bg); color: var(--mkt-c); }
+    .activity-badge.acc { background: var(--acc-bg); color: var(--acc-c); }
+
+    /* Quick Compose */
+    .quick-compose {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+    }
+    .qc-header {
+      padding: 13px 15px; border-bottom: 1px solid var(--border);
+      background: var(--surface2);
+    }
+    .qc-header p { font-size: 0.76rem; font-weight: 800; color: var(--text); font-family: 'Bricolage Grotesque', sans-serif; }
+    .qc-header small { font-size: 0.66rem; color: var(--muted); }
+    .qc-btn {
+      display: flex; align-items: center; gap: 11px;
+      padding: 11px 15px; border-bottom: 1px solid var(--border);
+      cursor: pointer; transition: background 0.18s;
+    }
+    .qc-btn:last-child { border-bottom: none; }
+    .qc-btn:hover { background: var(--surface2); }
+    .qc-btn-icon {
+      width: 31px; height: 31px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.88rem; flex-shrink: 0;
+    }
+    .qc-btn-icon.hr  { background: var(--hr-bg); }
+    .qc-btn-icon.cs  { background: var(--cs-bg); }
+    .qc-btn-icon.mkt { background: var(--mkt-bg); }
+    .qc-btn-icon.acc { background: var(--acc-bg); }
+    .qc-btn-text strong { display: block; font-size: 0.78rem; font-weight: 700; color: var(--text); }
+    .qc-btn-text small  { font-size: 0.68rem; color: var(--muted); }
+    .qc-btn-arrow { margin-left: auto; color: var(--muted); font-size: 0.8rem; }
 
     /* ── FORM VIEW ── */
-    #form-view { display: none; width: 100%; padding: 28px 30px; gap: 26px; align-items: flex-start; }
+    #form-view { display: none; width: 100%; padding: 26px 28px; gap: 28px; align-items: flex-start; }
     #form-view.visible { display: flex; }
 
-    .form-panel { flex: 1; min-width: 0; max-width: 500px; }
-    .form-panel-header { margin-bottom: 22px; }
+    .form-panel { flex: 1; min-width: 0; max-width: 490px; }
+    .form-panel-header { margin-bottom: 20px; }
     .form-dept-label {
       display: inline-flex; align-items: center; gap: 6px;
-      font-size: 0.68rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 1px;
-      padding: 3px 10px; border-radius: 6px;
-      margin-bottom: 8px;
+      font-size: 0.66rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 1.1px; padding: 3px 10px; border-radius: 6px; margin-bottom: 8px;
     }
     .form-panel h2 {
       font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 1.5rem; font-weight: 800;
-      color: var(--text); letter-spacing: -0.5px;
+      font-size: 1.5rem; font-weight: 800; color: var(--text); letter-spacing: -0.5px;
     }
-    .form-panel .subtitle { font-size: 0.82rem; color: var(--text2); margin-top: 4px; font-weight: 400; line-height: 1.5; }
+    .form-panel .subtitle { font-size: 0.8rem; color: var(--text2); margin-top: 4px; line-height: 1.5; }
 
-    .field { margin-bottom: 14px; }
+    .field { margin-bottom: 13px; }
     .field label {
-      display: block; font-size: 0.72rem; font-weight: 700;
-      color: var(--text2); letter-spacing: 0.4px;
-      text-transform: uppercase; margin-bottom: 6px;
+      display: block; font-size: 0.68rem; font-weight: 800;
+      color: var(--text2); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 5px;
     }
     .field input, .field select, .field textarea {
-      width: 100%;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      padding: 10px 13px;
-      color: var(--text);
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.875rem; font-weight: 400;
+      width: 100%; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 9px;
+      padding: 10px 13px; color: var(--text);
+      font-family: 'Nunito', sans-serif; font-size: 0.875rem; font-weight: 400;
       outline: none;
       transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
     }
-    .field input:hover, .field select:hover, .field textarea:hover {
-      border-color: var(--border2);
-    }
+    .field input:hover, .field select:hover, .field textarea:hover { border-color: var(--border2); }
     .field input:focus, .field select:focus, .field textarea:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(232,146,75,0.13);
+      box-shadow: 0 0 0 3px rgba(232,146,75,0.12);
       background: var(--surface2);
     }
     .field input::placeholder, .field textarea::placeholder { color: var(--muted); opacity: 0.7; }
     .field select option { background: var(--surface); color: var(--text); }
-    .field textarea { resize: vertical; min-height: 78px; }
-    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .field textarea { resize: vertical; min-height: 80px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
 
+    /* SMTP toggle — visually marked as demo */
+    .smtp-section {
+      background: var(--surface2);
+      border: 1px dashed var(--border2);
+      border-radius: 10px;
+      padding: 11px 13px;
+      margin-top: 6px;
+      position: relative;
+    }
+    .smtp-demo-tag {
+      position: absolute; top: -9px; left: 12px;
+      font-size: 0.58rem; font-weight: 800; letter-spacing: 0.8px;
+      text-transform: uppercase;
+      background: var(--surface3); color: var(--muted);
+      border: 1px solid var(--border2); border-radius: 4px;
+      padding: 1px 7px;
+    }
     .email-toggle-row {
       display: flex; align-items: center; gap: 10px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      padding: 10px 13px;
       cursor: pointer;
-      transition: border-color 0.18s;
     }
-    .email-toggle-row:hover { border-color: var(--border2); }
     .email-toggle-row label {
-      font-size: 0.84rem; color: var(--text2);
-      margin: 0; text-transform: none; letter-spacing: 0;
-      font-weight: 400; cursor: pointer;
+      font-size: 0.8rem; color: var(--text2); margin: 0;
+      text-transform: none; letter-spacing: 0; font-weight: 500; cursor: pointer;
     }
-    .email-toggle-row input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
-    #email-field { margin-top: 10px; }
+    .email-toggle-row input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--accent); cursor: pointer; }
+    .smtp-note { font-size: 0.66rem; color: var(--muted); margin-top: 5px; font-style: italic; }
+    #email-field { margin-top: 8px; }
+    #email-field input { background: var(--surface); }
 
     .btn-generate {
-      width: 100%;
-      padding: 13px;
-      background: var(--accent);
-      border: none;
-      border-radius: 10px;
+      width: 100%; padding: 13px;
+      background: linear-gradient(135deg, var(--accent), #d4732a);
+      border: none; border-radius: 10px;
       color: #fff;
       font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 0.95rem; font-weight: 700;
-      cursor: pointer;
-      margin-top: 10px;
-      position: relative;
-      overflow: hidden;
-      letter-spacing: -0.2px;
-      transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+      font-size: 0.95rem; font-weight: 800;
+      cursor: pointer; margin-top: 12px;
+      position: relative; overflow: hidden; letter-spacing: -0.2px;
+      transition: transform 0.15s, box-shadow 0.15s;
     }
     .btn-generate::before {
       content: '';
-      position: absolute;
-      top: 0; left: -100%;
+      position: absolute; top: 0; left: -100%;
       width: 60%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
-      transform: skewX(-20deg);
-      transition: left 0.5s;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      transform: skewX(-20deg); transition: left 0.5s;
     }
-    .btn-generate:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,146,75,0.35); }
+    .btn-generate:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(232,146,75,0.4); }
     .btn-generate:hover::before { left: 150%; }
     .btn-generate:active { transform: translateY(0); box-shadow: none; }
-    .btn-generate:disabled { opacity: 0.55; cursor: not-allowed; transform: none; box-shadow: none; }
+    .btn-generate:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 
     /* ── OUTPUT PANEL ── */
     .output-panel { flex: 1; min-width: 0; position: sticky; top: 0; }
     .output-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      min-height: 400px;
-      height: calc(100vh - 148px);
-      display: flex; flex-direction: column;
-      overflow: hidden;
-      transition: background 0.3s, border-color 0.3s;
-      box-shadow: 0 2px 16px var(--shadow);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; min-height: 400px;
+      height: calc(100vh - 140px);
+      display: flex; flex-direction: column; overflow: hidden;
+      box-shadow: 0 2px 20px var(--shadow);
     }
     .output-header {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 13px 16px;
-      border-bottom: 1px solid var(--border);
+      padding: 12px 15px; border-bottom: 1px solid var(--border);
       background: var(--surface2);
-      transition: background 0.3s, border-color 0.3s;
     }
-    .output-header-left { display: flex; align-items: center; gap: 7px; }
-    .output-label { font-size: 0.7rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; }
+    .output-header-left { display: flex; align-items: center; gap: 8px; }
+    .output-label {
+      font-size: 0.68rem; color: var(--muted); font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.8px;
+    }
+
+    /* Model tag in output header */
+    .model-tag {
+      font-size: 0.63rem; font-weight: 700;
+      background: var(--surface3); color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 5px; padding: 2px 7px;
+    }
 
     .copy-btn {
-      background: var(--surface3);
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      color: var(--text2);
-      font-size: 0.72rem;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 600;
-      padding: 4px 11px;
-      cursor: pointer;
+      background: var(--surface3); border: 1px solid var(--border);
+      border-radius: 7px; color: var(--text2);
+      font-size: 0.7rem; font-family: 'Nunito', sans-serif;
+      font-weight: 700; padding: 4px 11px; cursor: pointer;
       transition: all 0.18s;
     }
     .copy-btn:hover { color: var(--text); border-color: var(--accent); background: rgba(232,146,75,0.08); }
 
     .output-body {
-      flex: 1; overflow-y: auto;
-      padding: 20px 18px;
-      font-size: 0.875rem; line-height: 1.75;
-      white-space: pre-wrap; color: var(--text2);
-      font-weight: 400;
+      flex: 1; overflow-y: auto; padding: 20px 18px;
+      font-size: 0.875rem; line-height: 1.8;
+      white-space: pre-wrap; color: var(--text2); font-weight: 400;
     }
     .output-body::-webkit-scrollbar { width: 4px; }
     .output-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
@@ -507,59 +598,124 @@
       align-items: center; justify-content: center;
       height: 100%; gap: 10px; color: var(--muted);
     }
-    .ph-icon { font-size: 2.2rem; opacity: 0.25; margin-bottom: 4px; }
-    .ph-text { font-size: 0.82rem; font-weight: 400; }
+    .ph-icon { font-size: 2rem; opacity: 0.2; margin-bottom: 4px; }
+    .ph-text { font-size: 0.8rem; }
 
-    /* spinner */
+    /* Spinner */
     .spinner {
       display: none; flex-direction: column;
       align-items: center; justify-content: center;
-      height: 100%; gap: 14px; color: var(--muted);
-      font-size: 0.82rem;
+      height: 100%; gap: 14px;
     }
     .spinner.visible { display: flex; }
+    .spin-wrap { position: relative; width: 44px; height: 44px; }
     .spin-ring {
-      width: 34px; height: 34px;
+      position: absolute; inset: 0;
       border: 2.5px solid var(--border);
       border-top-color: var(--accent);
       border-radius: 50%;
-      animation: spin 0.75s linear infinite;
+      animation: spin 0.8s linear infinite;
+    }
+    .spin-ring-2 {
+      position: absolute; inset: 6px;
+      border: 2px solid transparent;
+      border-top-color: var(--accent2);
+      border-radius: 50%;
+      animation: spin 1.2s linear infinite reverse;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
+    .spin-label { font-size: 0.78rem; color: var(--muted); font-style: italic; }
+    .spin-model { font-size: 0.65rem; color: var(--muted); opacity: 0.6; }
 
+    /* Status pill */
     .status-pill {
       display: inline-flex; align-items: center; gap: 5px;
       padding: 3px 9px; border-radius: 20px;
-      font-size: 0.7rem; font-weight: 700;
+      font-size: 0.68rem; font-weight: 800;
     }
     .status-pill.success {
-      background: rgba(78,203,148,0.12);
-      color: var(--success);
-      border: 1px solid rgba(78,203,148,0.22);
+      background: rgba(62,201,138,0.12); color: var(--success);
+      border: 1px solid rgba(62,201,138,0.22);
     }
     .status-pill.error {
-      background: rgba(240,106,106,0.12);
-      color: var(--error);
+      background: rgba(240,106,106,0.12); color: var(--error);
       border: 1px solid rgba(240,106,106,0.22);
     }
 
-    /* dept label color sets */
+    /* Dept label color sets */
     .label-hr  { background: var(--hr-bg);  color: var(--hr-c); }
     .label-cs  { background: var(--cs-bg);  color: var(--cs-c); }
     .label-mkt { background: var(--mkt-bg); color: var(--mkt-c); }
     .label-acc { background: var(--acc-bg); color: var(--acc-c); }
 
-    /* form title color */
     .title-hr  { color: var(--hr-c)  !important; }
     .title-cs  { color: var(--cs-c)  !important; }
     .title-mkt { color: var(--mkt-c) !important; }
     .title-acc { color: var(--acc-c) !important; }
+
+    /* ── SIDEBAR OVERLAY (mobile) ── */
+    .sidebar-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.55); z-index: 99;
+    }
+    .sidebar-overlay.visible { display: block; }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; bottom: 24px; right: 24px;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 11px 16px;
+      font-size: 0.78rem; color: var(--text);
+      font-weight: 600; z-index: 999;
+      box-shadow: 0 4px 20px var(--shadow2);
+      transform: translateY(80px); opacity: 0;
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
+      display: flex; align-items: center; gap: 8px; pointer-events: none;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.success { border-color: rgba(62,201,138,0.4); }
+    .toast.error   { border-color: rgba(240,106,106,0.4); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .stat-row { grid-template-columns: repeat(2,1fr); }
+      .dash-bottom { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      html, body { overflow: auto; height: auto; }
+      body { flex-direction: column; height: auto; min-height: 100vh; }
+      .sidebar {
+        position: fixed; top: 0; left: 0; height: 100%;
+        z-index: 100; transform: translateX(-100%);
+        transition: transform 0.28s cubic-bezier(0.4,0,0.2,1), background 0.3s;
+        min-width: 240px; width: 240px;
+      }
+      .sidebar.open { transform: translateX(0); }
+      .main { width: 100%; flex: 1; overflow: visible; }
+      .topbar { padding: 0 14px; position: sticky; top: 0; z-index: 10; height: 52px; min-height: 52px; }
+      .hamburger { display: flex; }
+      .topbar-divider, .topbar-sub { display: none; }
+      .content { overflow: visible; flex-direction: column; height: auto; }
+      #form-view { flex-direction: column; padding: 18px 14px 30px; gap: 18px; }
+      .form-panel { max-width: 100%; }
+      .field-row { grid-template-columns: 1fr; }
+      .output-panel { position: static; }
+      .output-box { height: auto; min-height: 280px; max-height: none; }
+      #landing { padding: 18px 14px 28px; gap: 16px; }
+      .dash-greeting-text h2 { font-size: 1.3rem; }
+    }
+    @media (max-width: 480px) {
+      .stat-row { grid-template-columns: repeat(2,1fr); gap: 8px; }
+      .stat-value { font-size: 1.4rem; }
+    }
   </style>
 </head>
 <body>
 
-<!-- ═══════ SIDEBAR ═══════ -->
-<aside class="sidebar">
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="sidebar" id="sidebar">
   <div class="sidebar-logo">
     <div class="logo-lockup">
       <div class="logo-mark">Z</div>
@@ -574,96 +730,217 @@
 
   <div class="nav-item" data-dept="hr" onclick="openDept('hr')">
     <div class="nav-icon hr">👥</div>
-    <div class="nav-text">
-      <h3>Human Resources</h3>
-      <p>Onboarding emails</p>
-    </div>
+    <div class="nav-text"><h3>Human Resources</h3><p>Onboarding emails</p></div>
   </div>
   <div class="nav-item" data-dept="customer-service" onclick="openDept('customer-service')">
     <div class="nav-icon cs">🎧</div>
-    <div class="nav-text">
-      <h3>Customer Service</h3>
-      <p>Support responses</p>
-    </div>
+    <div class="nav-text"><h3>Customer Service</h3><p>Support responses</p></div>
   </div>
   <div class="nav-item" data-dept="marketing" onclick="openDept('marketing')">
     <div class="nav-icon mkt">📣</div>
-    <div class="nav-text">
-      <h3>Marketing</h3>
-      <p>Campaign emails</p>
-    </div>
+    <div class="nav-text"><h3>Marketing</h3><p>Campaign emails</p></div>
   </div>
   <div class="nav-item" data-dept="accounting" onclick="openDept('accounting')">
     <div class="nav-icon acc">💼</div>
-    <div class="nav-text">
-      <h3>Accounting</h3>
-      <p>Invoice & payment</p>
+    <div class="nav-text"><h3>Accounting</h3><p>Invoice & payment</p></div>
+  </div>
+
+  <!-- Live model status -->
+  <div class="model-live-row">
+    <div class="live-dot"></div>
+    <div class="model-info">
+      <strong>Groq · Llama 3.1 8B</strong>
+      <span>CrewAI Multi-Agent</span>
     </div>
   </div>
 
   <div class="sidebar-footer">
-    <div class="model-badge">
-      <span class="badge-dot"></span>
-      Groq LLaMA 3.1
-    </div>
-    <label class="theme-toggle" title="Toggle theme">
-      <div class="toggle-track" onclick="toggleTheme()">
-        <div class="toggle-knob" id="toggle-knob">
-          <span id="toggle-emoji">🌙</span>
-        </div>
+    <span class="footer-label">© ZenithWorks</span>
+    <div class="toggle-track" onclick="toggleTheme()" title="Toggle theme">
+      <div class="toggle-knob" id="toggle-knob">
+        <span id="toggle-emoji">🌙</span>
       </div>
-    </label>
+    </div>
   </div>
 </aside>
 
-<!-- ═══════ MAIN ═══════ -->
+<!-- ═══ MAIN ═══ -->
 <main class="main">
 
   <div class="topbar">
+    <button class="hamburger" id="hamburger-btn" onclick="toggleSidebar()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
     <span class="topbar-icon" id="topbar-icon">🏠</span>
     <span class="topbar-title" id="topbar-title">Dashboard</span>
     <div class="topbar-divider"></div>
     <span class="topbar-sub" id="topbar-sub">Pick a department to begin</span>
     <div class="topbar-right">
-      <span class="topbar-tag">Multi-Agent Workflow</span>
+      <div class="health-badge checking" id="health-badge">
+        <div class="health-dot"></div>
+        <span id="health-text">Checking…</span>
+      </div>
     </div>
   </div>
 
   <div class="content">
 
-    <!-- LANDING -->
+    <!-- ═══ DASHBOARD LANDING ═══ -->
     <div id="landing">
-      <div class="landing-eyebrow">
-        <span class="landing-eyebrow-dot"></span>
-        CrewAI · LLaMA 3.1 · Flask
+      <div class="dash-greeting">
+        <div class="dash-greeting-text">
+          <h2>Good <span id="time-greeting">morning</span>, <em>ZenithWorks</em> 👋</h2>
+          <p>Your AI employees are ready — pick a department to generate an email</p>
+        </div>
+        <div class="dash-date" id="dash-date-label"></div>
       </div>
-      <h2>Your team of <em>AI employees</em>,<br/>ready to work</h2>
-      <p>Pick a department below and let your AI employees draft professional emails in seconds — no prompting required.</p>
-      <div class="dept-cards">
-        <div class="dept-card" data-d="hr" onclick="openDept('hr')">
-          <div class="card-icon-wrap" style="background:var(--hr-bg)">👥</div>
-          <h3>Human Resources</h3>
-          <p>Warm onboarding emails that make new hires feel welcome from day one</p>
+
+      <!-- Stat Cards -->
+      <div class="stat-row">
+        <div class="stat-card sc-hr" onclick="openDept('hr')" title="Open HR">
+          <div class="stat-top">
+            <div class="stat-icon hr">👥</div>
+            <span class="stat-trend up">↑ 12%</span>
+          </div>
+          <div class="stat-value">24</div>
+          <div class="stat-label">HR emails this month</div>
         </div>
-        <div class="dept-card" data-d="customer-service" onclick="openDept('customer-service')">
-          <div class="card-icon-wrap" style="background:var(--cs-bg)">🎧</div>
-          <h3>Customer Service</h3>
-          <p>Empathetic, clear support responses matched to issue priority</p>
+        <div class="stat-card sc-cs" onclick="openDept('customer-service')" title="Open Customer Service">
+          <div class="stat-top">
+            <div class="stat-icon cs">🎧</div>
+            <span class="stat-trend up">↑ 8%</span>
+          </div>
+          <div class="stat-value">61</div>
+          <div class="stat-label">Support replies drafted</div>
         </div>
-        <div class="dept-card" data-d="marketing" onclick="openDept('marketing')">
-          <div class="card-icon-wrap" style="background:var(--mkt-bg)">📣</div>
-          <h3>Marketing</h3>
-          <p>High-converting campaign emails with hooks and strong CTAs</p>
+        <div class="stat-card sc-mkt" onclick="openDept('marketing')" title="Open Marketing">
+          <div class="stat-top">
+            <div class="stat-icon mkt">📣</div>
+            <span class="stat-trend down">↓ 3%</span>
+          </div>
+          <div class="stat-value">18</div>
+          <div class="stat-label">Campaign emails created</div>
         </div>
-        <div class="dept-card" data-d="accounting" onclick="openDept('accounting')">
-          <div class="card-icon-wrap" style="background:var(--acc-bg)">💼</div>
-          <h3>Accounting</h3>
-          <p>Professional, courteous invoice and payment reminder emails</p>
+        <div class="stat-card sc-acc" onclick="openDept('accounting')" title="Open Accounting">
+          <div class="stat-top">
+            <div class="stat-icon acc">💼</div>
+            <span class="stat-trend flat">→ 0%</span>
+          </div>
+          <div class="stat-value">39</div>
+          <div class="stat-label">Invoices & reminders sent</div>
+        </div>
+      </div>
+
+      <!-- Bottom: Activity + Quick Compose -->
+      <div class="dash-bottom">
+        <div>
+          <div class="dash-section-title">
+            Recent Activity <span>Sample data · Real generations logged to Sheets</span>
+          </div>
+          <div class="activity-feed">
+            <div class="activity-item" onclick="openDept('hr')">
+              <div class="activity-dot hr"></div>
+              <div class="activity-info">
+                <strong>Onboarding email — Priya Sharma</strong>
+                <p>Software Engineer · Engineering · Manager: Rahul Mehta</p>
+              </div>
+              <span class="activity-badge hr">HR</span>
+              <span class="activity-time">2h ago</span>
+            </div>
+            <div class="activity-item" onclick="openDept('customer-service')">
+              <div class="activity-dot cs"></div>
+              <div class="activity-info">
+                <strong>Support reply — ticket #4821</strong>
+                <p>Alice Johnson · ZenithCloud Dashboard · Priority: High</p>
+              </div>
+              <span class="activity-badge cs">Support</span>
+              <span class="activity-time">5h ago</span>
+            </div>
+            <div class="activity-item" onclick="openDept('marketing')">
+              <div class="activity-dot mkt"></div>
+              <div class="activity-info">
+                <strong>Campaign — ZenithCloud Pro launch</strong>
+                <p>Target: Small business owners · CTA: 30-day free trial</p>
+              </div>
+              <span class="activity-badge mkt">Marketing</span>
+              <span class="activity-time">Yesterday</span>
+            </div>
+            <div class="activity-item" onclick="openDept('accounting')">
+              <div class="activity-dot acc"></div>
+              <div class="activity-info">
+                <strong>Invoice reminder — Acme Corp</strong>
+                <p>INV-2025-041 · $8,500 USD · Due: 15 May 2025</p>
+              </div>
+              <span class="activity-badge acc">Accounting</span>
+              <span class="activity-time">2d ago</span>
+            </div>
+            <div class="activity-item" onclick="openDept('hr')">
+              <div class="activity-dot hr"></div>
+              <div class="activity-info">
+                <strong>Onboarding email — James Okafor</strong>
+                <p>Product Designer · Design · Manager: Sara Lee</p>
+              </div>
+              <span class="activity-badge hr">HR</span>
+              <span class="activity-time">3d ago</span>
+            </div>
+            <div class="activity-item" onclick="openDept('customer-service')">
+              <div class="activity-dot cs"></div>
+              <div class="activity-info">
+                <strong>Support reply — ticket #4799</strong>
+                <p>Marcus Webb · ZenithCloud API · Priority: Medium</p>
+              </div>
+              <span class="activity-badge cs">Support</span>
+              <span class="activity-time">4d ago</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Compose -->
+        <div>
+          <div class="dash-section-title">Quick Compose</div>
+          <div class="quick-compose">
+            <div class="qc-header">
+              <p>Start a new email</p>
+              <small>Pick a department to open the AI form</small>
+            </div>
+            <div class="qc-btn" onclick="openDept('hr')">
+              <div class="qc-btn-icon hr">👥</div>
+              <div class="qc-btn-text">
+                <strong>Human Resources</strong>
+                <small>Onboarding & employee emails</small>
+              </div>
+              <span class="qc-btn-arrow">›</span>
+            </div>
+            <div class="qc-btn" onclick="openDept('customer-service')">
+              <div class="qc-btn-icon cs">🎧</div>
+              <div class="qc-btn-text">
+                <strong>Customer Service</strong>
+                <small>Support & issue resolution</small>
+              </div>
+              <span class="qc-btn-arrow">›</span>
+            </div>
+            <div class="qc-btn" onclick="openDept('marketing')">
+              <div class="qc-btn-icon mkt">📣</div>
+              <div class="qc-btn-text">
+                <strong>Marketing</strong>
+                <small>Campaign & promotional emails</small>
+              </div>
+              <span class="qc-btn-arrow">›</span>
+            </div>
+            <div class="qc-btn" onclick="openDept('accounting')">
+              <div class="qc-btn-icon acc">💼</div>
+              <div class="qc-btn-text">
+                <strong>Accounting</strong>
+                <small>Invoice & payment emails</small>
+              </div>
+              <span class="qc-btn-arrow">›</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- FORM VIEW -->
+    <!-- ═══ FORM VIEW ═══ -->
     <div id="form-view">
 
       <div class="form-panel">
@@ -673,7 +950,7 @@
           <p class="subtitle" id="form-subtitle"></p>
         </div>
 
-        <!-- HR -->
+        <!-- HR Fields -->
         <div id="fields-hr" class="dept-fields" style="display:none">
           <div class="field-row">
             <div class="field"><label>Full Name</label><input id="hr-name" placeholder="Jane Doe" /></div>
@@ -686,7 +963,7 @@
           <div class="field"><label>Manager Name</label><input id="hr-manager" placeholder="John Smith" /></div>
         </div>
 
-        <!-- Customer Service -->
+        <!-- Customer Service Fields -->
         <div id="fields-customer-service" class="dept-fields" style="display:none">
           <div class="field"><label>Customer Name</label><input id="cs-customer_name" placeholder="Alice Johnson" /></div>
           <div class="field"><label>Issue Description</label><textarea id="cs-issue" placeholder="Describe the customer's issue…"></textarea></div>
@@ -701,7 +978,7 @@
           </div>
         </div>
 
-        <!-- Marketing -->
+        <!-- Marketing Fields -->
         <div id="fields-marketing" class="dept-fields" style="display:none">
           <div class="field-row">
             <div class="field"><label>Product Name</label><input id="mkt-product" placeholder="ZenithCloud Pro" /></div>
@@ -711,7 +988,7 @@
           <div class="field"><label>Offer / CTA</label><input id="mkt-offer" placeholder="30-day free trial" /></div>
         </div>
 
-        <!-- Accounting -->
+        <!-- Accounting Fields -->
         <div id="fields-accounting" class="dept-fields" style="display:none">
           <div class="field-row">
             <div class="field"><label>Client Name</label><input id="acc-client_name" placeholder="Acme Corp" /></div>
@@ -723,12 +1000,14 @@
           </div>
         </div>
 
-        <!-- Email dispatch -->
-        <div class="field" style="margin-top:6px">
+        <!-- SMTP Section — clearly labelled as demo/not deployed -->
+        <div class="smtp-section">
+          <div class="smtp-demo-tag">Not deployed in this build</div>
           <div class="email-toggle-row">
             <input type="checkbox" id="send-email-toggle" onchange="toggleEmailField()" />
             <label for="send-email-toggle">Send directly via SMTP after generating</label>
           </div>
+          <p class="smtp-note">SMTP email dispatch is available in the codebase but not configured in this deployment.</p>
           <div id="email-field" style="display:none">
             <input id="recipient-email" placeholder="recipient@email.com" />
           </div>
@@ -739,20 +1018,25 @@
         </button>
       </div>
 
-      <!-- Output -->
+      <!-- Output Panel -->
       <div class="output-panel">
         <div class="output-box">
           <div class="output-header">
             <div class="output-header-left">
               <span class="output-label">Output</span>
+              <span class="model-tag">Groq · Llama 3.1 8B</span>
               <span id="output-status-label"></span>
             </div>
             <button class="copy-btn" onclick="copyOutput()">Copy</button>
           </div>
 
           <div class="spinner" id="spinner">
-            <div class="spin-ring"></div>
-            <p style="color:var(--muted);font-size:0.82rem">Your AI employee is writing…</p>
+            <div class="spin-wrap">
+              <div class="spin-ring"></div>
+              <div class="spin-ring-2"></div>
+            </div>
+            <p class="spin-label">AI employee is writing…</p>
+            <p class="spin-model">Groq · Llama 3.1 8B · CrewAI</p>
           </div>
 
           <div class="output-body" id="output-body">
@@ -768,19 +1052,73 @@
   </div>
 </main>
 
-<script>
-  /* ── Theme ── */
-  const saved = localStorage.getItem('zw-theme') || 'dark';
-  applyTheme(saved);
+<!-- Toast notification -->
+<div class="toast" id="toast"></div>
 
+<script>
+  /* ── Mobile sidebar ── */
+  function toggleSidebar() {
+    const s = document.getElementById('sidebar');
+    const o = document.getElementById('sidebar-overlay');
+    const b = document.getElementById('hamburger-btn');
+    const open = s.classList.toggle('open');
+    o.classList.toggle('visible', open);
+    b.classList.toggle('open', open);
+  }
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebar-overlay').classList.remove('visible');
+    document.getElementById('hamburger-btn').classList.remove('open');
+  }
+
+  /* ── Theme ── */
+  applyTheme(localStorage.getItem('zw-theme') || 'dark');
   function applyTheme(t) {
     document.documentElement.setAttribute('data-theme', t);
     document.getElementById('toggle-emoji').textContent = t === 'light' ? '☀️' : '🌙';
     localStorage.setItem('zw-theme', t);
   }
   function toggleTheme() {
-    const cur = document.documentElement.getAttribute('data-theme');
-    applyTheme(cur === 'dark' ? 'light' : 'dark');
+    applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  /* ── Date & greeting ── */
+  (function() {
+    const now = new Date();
+    const h = now.getHours();
+    document.getElementById('time-greeting').textContent =
+      h < 12 ? 'morning' : h < 17 ? 'afternoon' : 'evening';
+    document.getElementById('dash-date-label').textContent =
+      now.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+  })();
+
+  /* ── Health check — hits real Flask /health endpoint ── */
+  async function checkHealth() {
+    const badge = document.getElementById('health-badge');
+    const text  = document.getElementById('health-text');
+    try {
+      const res  = await fetch('/health', { signal: AbortSignal.timeout(5000) });
+      const data = await res.json();
+      if (res.ok && data.status === 'healthy') {
+        badge.className = 'health-badge online';
+        text.textContent = 'Backend Online';
+      } else {
+        throw new Error('unhealthy');
+      }
+    } catch {
+      badge.className = 'health-badge offline';
+      text.textContent = 'Backend Offline';
+    }
+  }
+  checkHealth();
+  setInterval(checkHealth, 30000); // re-check every 30s
+
+  /* ── Toast ── */
+  function showToast(msg, type = 'success') {
+    const t = document.getElementById('toast');
+    t.textContent = (type === 'success' ? '✓ ' : '✗ ') + msg;
+    t.className = `toast ${type} show`;
+    setTimeout(() => t.classList.remove('show'), 3000);
   }
 
   /* ── Dept config ── */
@@ -789,37 +1127,33 @@
       icon: '👥', title: 'Human Resources',
       sub: 'Generate a warm onboarding email for a new team member.',
       labelClass: 'label-hr', titleClass: 'title-hr',
-      topIcon: '👥', topSub: 'Onboarding & employee emails',
-      labelText: 'HR Department',
+      topIcon: '👥', topSub: 'Onboarding & employee emails', labelText: '👥 HR Department',
     },
     'customer-service': {
       icon: '🎧', title: 'Customer Service',
       sub: 'Write an empathetic support response matched to the issue priority.',
       labelClass: 'label-cs', titleClass: 'title-cs',
-      topIcon: '🎧', topSub: 'Support & issue resolution',
-      labelText: 'Customer Service',
+      topIcon: '🎧', topSub: 'Support & issue resolution', labelText: '🎧 Customer Service',
     },
     'marketing': {
       icon: '📣', title: 'Marketing',
       sub: 'Create a compelling campaign email with a strong call-to-action.',
       labelClass: 'label-mkt', titleClass: 'title-mkt',
-      topIcon: '📣', topSub: 'Campaign & promotional emails',
-      labelText: 'Marketing',
+      topIcon: '📣', topSub: 'Campaign & promotional emails', labelText: '📣 Marketing',
     },
     'accounting': {
       icon: '💼', title: 'Accounting',
       sub: 'Draft a professional invoice or payment reminder email.',
       labelClass: 'label-acc', titleClass: 'title-acc',
-      topIcon: '💼', topSub: 'Invoice & payment emails',
-      labelText: 'Accounting',
+      topIcon: '💼', topSub: 'Invoice & payment emails', labelText: '💼 Accounting',
     },
   };
 
   const FIELDS = {
-    'hr': ['name','position','department','start_date','manager'],
+    'hr':               ['name','position','department','start_date','manager'],
     'customer-service': ['customer_name','issue','product','priority'],
-    'marketing': ['product','audience','benefits','offer'],
-    'accounting': ['client_name','invoice_number','amount','due_date'],
+    'marketing':        ['product','audience','benefits','offer'],
+    'accounting':       ['client_name','invoice_number','amount','due_date'],
   };
   const PFX = { 'hr':'hr','customer-service':'cs','marketing':'mkt','accounting':'acc' };
 
@@ -828,21 +1162,22 @@
   function openDept(dept) {
     currentDept = dept;
     const m = META[dept];
+    closeSidebar();
 
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     document.querySelector(`.nav-item[data-dept="${dept}"]`).classList.add('active');
 
-    document.getElementById('topbar-icon').textContent = m.topIcon;
+    document.getElementById('topbar-icon').textContent  = m.topIcon;
     document.getElementById('topbar-title').textContent = m.title;
-    document.getElementById('topbar-sub').textContent = m.topSub;
+    document.getElementById('topbar-sub').textContent   = m.topSub;
 
     const lbl = document.getElementById('form-dept-label');
     lbl.textContent = m.labelText;
-    lbl.className = 'form-dept-label ' + m.labelClass;
+    lbl.className   = 'form-dept-label ' + m.labelClass;
 
     const titleEl = document.getElementById('form-title');
     titleEl.textContent = m.title;
-    titleEl.className = m.titleClass;
+    titleEl.className   = m.titleClass;
     document.getElementById('form-subtitle').textContent = m.sub;
 
     document.querySelectorAll('.dept-fields').forEach(el => el.style.display = 'none');
@@ -854,6 +1189,10 @@
     const fv = document.getElementById('form-view');
     fv.style.display = 'flex';
     fv.classList.add('visible');
+
+    // uncheck SMTP toggle
+    document.getElementById('send-email-toggle').checked = false;
+    document.getElementById('email-field').style.display = 'none';
   }
 
   function toggleEmailField() {
@@ -871,14 +1210,18 @@
     document.getElementById('output-status-label').innerHTML = '';
   }
 
+  /* ── Generate — hits real Flask /api/process/<dept> ── */
   async function generate() {
     if (!currentDept) return;
+
     const pfx = PFX[currentDept];
     const payload = {};
     FIELDS[currentDept].forEach(f => {
       const el = document.getElementById(`${pfx}-${f}`);
       if (el) payload[f] = el.value.trim();
     });
+
+    // SMTP — pass through but backend will silently skip if not configured
     const sendEmail = document.getElementById('send-email-toggle').checked;
     if (sendEmail) {
       payload.send_email = true;
@@ -886,13 +1229,14 @@
     }
 
     const btn = document.getElementById('generate-btn');
-    btn.disabled = true; btn.textContent = 'Generating…';
+    btn.disabled    = true;
+    btn.textContent = 'Generating…';
     document.getElementById('output-body').innerHTML = '';
     document.getElementById('spinner').classList.add('visible');
     document.getElementById('output-status-label').innerHTML = '';
 
     try {
-      const res = await fetch(`/api/process/${currentDept}`, {
+      const res  = await fetch(`/api/process/${currentDept}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -902,33 +1246,38 @@
 
       if (data.success) {
         document.getElementById('output-body').textContent = data.result;
-        const lat = data.latency_ms ? ` · ${(data.latency_ms/1000).toFixed(1)}s` : '';
+        const lat  = data.latency_ms ? ` · ${(data.latency_ms/1000).toFixed(1)}s` : '';
         const sent = data.email_sent ? ' · Sent ✓' : '';
         document.getElementById('output-status-label').innerHTML =
           `<span class="status-pill success">✓ Done${lat}${sent}</span>`;
+        showToast('Email generated successfully');
       } else {
-        document.getElementById('output-body').textContent = 'Error: ' + (data.error || 'Unknown error');
+        document.getElementById('output-body').textContent = '⚠ ' + (data.error || 'Unknown error');
         document.getElementById('output-status-label').innerHTML =
           `<span class="status-pill error">✗ Failed</span>`;
+        showToast(data.error || 'Generation failed', 'error');
       }
     } catch (err) {
       document.getElementById('spinner').classList.remove('visible');
-      document.getElementById('output-body').textContent = 'Network error: ' + err.message;
+      document.getElementById('output-body').textContent =
+        '⚠ Could not reach the backend.\n\nMake sure Flask is running on the same host.';
       document.getElementById('output-status-label').innerHTML =
         `<span class="status-pill error">✗ Network Error</span>`;
+      showToast('Network error — is Flask running?', 'error');
     } finally {
-      btn.disabled = false;
-      btn.textContent = '✦  Generate Email';
+      btn.disabled    = false;
+      btn.innerHTML   = '✦ &nbsp;Generate Email';
     }
   }
 
+  /* ── Copy ── */
   function copyOutput() {
     const el = document.getElementById('output-body');
-    const text = el.textContent;
-    if (!text || el.querySelector('.output-placeholder')) return;
-    navigator.clipboard.writeText(text).then(() => {
+    if (el.querySelector('.output-placeholder')) return;
+    navigator.clipboard.writeText(el.textContent).then(() => {
       const btn = document.querySelector('.copy-btn');
       btn.textContent = 'Copied!';
+      showToast('Copied to clipboard');
       setTimeout(() => btn.textContent = 'Copy', 1800);
     });
   }
